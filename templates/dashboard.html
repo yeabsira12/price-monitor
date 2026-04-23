@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Price Monitor Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 10px; }
+        canvas { max-width: 100%; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📈 Price History</h1>
+    <canvas id="priceChart" width="800" height="400"></canvas>
+</div>
+<script>
+    fetch('/api/prices')
+        .then(res => res.json())
+        .then(data => {
+            // Convert data: price to number, check_time to Date object
+            const labels = data.map(row => new Date(row.check_time).toLocaleString());
+            const prices = data.map(row => parseFloat(row.price));
+            
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Price (USD)',
+                        data: prices,
+                        borderColor: 'red',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: false, title: { display: true, text: 'Price ($)' } },
+                        x: { title: { display: true, text: 'Date & Time' }, ticks: { maxRotation: 45, minRotation: 45 } }
+                    }
+                }
+            });
+        })
+        .catch(err => {
+            document.getElementById('priceChart').insertAdjacentHTML('afterend', 
+                '<p style="color:red;">Error loading chart: ' + err + '</p>');
+        });
+</script>
+</body>
+</html>
