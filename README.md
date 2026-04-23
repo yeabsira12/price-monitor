@@ -31,6 +31,21 @@ This tool automatically monitors product prices from any website. When a price d
 - Flask, Chart.js
 - Mailtrap (SMTP testing)
 
+## Database Setup
+
+1. Create a MySQL database named `price_monitor`.
+2. Run the following SQL to create the required table:
+
+```sql
+CREATE TABLE price_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(5) DEFAULT '$',
+    url TEXT,
+    check_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 ## How to Run Locally
 
 1. Clone the repository:
