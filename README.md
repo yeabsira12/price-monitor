@@ -1,18 +1,14 @@
 Price Monitor – Automated Web Scraper with Email Alerts & Dashboard
 
 ## DASHBOARD
-screenshots\sc3.JPG
-
+![Dashboard Screenshot](screenshots/sc3.JPG)
 ## MESSAGE RECIEVING
-screenshots\sc1.JPG
-screenshots\sc2.JPG
+![Screenshot](screenshots/sc1.JPG)screenshots\sc2.JPG
 
 ## DATABASE INTERACTION
-screenshots\sc4.JPG
-
+![Screenshot](screenshots/sc4.JPG)
 ## BASH INTERACTION
-screenshots\sc5.JPG
-
+![Screenshot](screenshots/sc5.JPG)
 
 
 
